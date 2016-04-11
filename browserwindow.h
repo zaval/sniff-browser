@@ -12,6 +12,8 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QFileDialog>
+#include <QNetworkCookieJar>
+#include <QNetworkCookie>
 #include "interceptormanager.h"
 #include "networkreplyproxy.h"
 

@@ -187,14 +187,16 @@ void NetworkReplyProxy::writeDataFake()
         // special case for cookies: we need to generate separate lines
         // QNetworkCookie::toRawForm is a bit broken and we have to do this
         // ourselves. some simple heuristic here
-        if (header.toLower() == "set-cookie") {
-            QList<QNetworkCookie> cookies = QNetworkCookie::parseCookies(rawHeader(header));
-            foreach (QNetworkCookie cookie, cookies) {
-                httpHeader += "set-cookie: " + cookie.toRawForm() + "\r\n";
-            }
-        } else {
+//        qDebug() << header;
+//        if (header.toLower() == "set-cookie111") {
+//            qDebug() << rawHeader(header);
+//            QList<QNetworkCookie> cookies = QNetworkCookie::parseCookies(rawHeader(header));
+//            foreach (QNetworkCookie cookie, cookies) {
+//                httpHeader += "set-cookie: " + cookie.toRawForm() + "\r\n";
+//            }
+//        } else {
             httpHeader += header + ": " + rawHeader(header) + "\r\n";
-        }
+//        }
     }
     httpHeader += "content-length: " + QByteArray::number(d->data.size()) + "\r\n";
     httpHeader += "\r\n";

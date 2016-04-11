@@ -99,7 +99,9 @@ void BrowserWindow::handle_request(const QNetworkRequest &request, const QByteAr
         if (headers[i].toLower() == "content-length")
             rd.request.method = "POST";
     }
-
+    foreach (QNetworkCookie cookie, nam->cookieJar()->cookiesForUrl(request.url())) {
+        rd.request.headers += "Cookie: " + cookie.name() + ": " + cookie.value() + "\n";
+    }
 
     waitingRequestHistory.insert(url, rd);
 }
